@@ -1,0 +1,11 @@
+h1 {
+	color: blue;
+}
+
+.bg-light {
+    background-color: #0bcaa5!important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
+}

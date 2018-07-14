@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-8">
+{% if latest_post_list %}
+    {% for post in latest_post_list %}
+        <a href="{% url 'detail' post.id %}">
+           {{post.title}}
+          
+   
+        </a>
+
+    {% endfor %}
+{% endif %}
+</div>
+</div>
+{% endblock %}

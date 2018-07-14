@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load comments %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-6 offset-4">
+<h3>{{post.title}}</h3>
+<h6>on {{post.pub_date}}</h6>
+{{post.content|safe|linebreaks}}
+{% render_comment_list for object %}
+
+<div class="comment_form">
+	
+  	{% get_comment_form for object as form %}
+  	<form action="{% comment_form_target %}" method="POST">
+  		{% csrf_token %}
+  		{{ form.comment }}
+
+  		{{ form.content_type }}
+  		{{ form.object_pk }}
+  		{{ form.timestamp }}
+  		{{ form.security_hash }}
+  		<input type="hidden" name="name" value="{{ user }}" />
+  		<input type="hidden" name="email" value="{{ user.email|default:'d@bigs.com' }}" />
+  		<input type="hidden" name="url" value="" />
+  		<input type="hidden" name="next" value="{% url 'detail' pk=object.id %}" /><br />
+  		<input type="submit"  value="Add comment" id="id_submit" />
+  	</form>
+
+
+</div>
+</div>
+</div>
+  	
+{% endblock %}
